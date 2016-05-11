@@ -10,13 +10,14 @@ var plugins = require("gulp-load-plugins")({
 	replaceString: /\bgulp[\-.]/
 });
 
-var filter = require('gulp-filter');
-var mainBowerFiles = require('main-bower-files');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-
 // Define default destination folder
 var dest = 'build/';
+
+// Install npm and bower dependencies
+gulp.task('dependencies', function() {
+	gulp.src(['./bower.json', './package.json'])
+  		.pipe(plugins.install());
+});
 
 // Clean build 
 gulp.task('clean', function() {
@@ -29,8 +30,8 @@ gulp.task('js', function() {
 	var jsFiles = ['src/js/*.js'];
 
 	gulp.src(jsFiles)
-		.pipe(concat('client.js'))
-		.pipe(uglify())
+		.pipe(plugins.concat('client.js'))
+		.pipe(plugins.uglify())
 		.pipe(gulp.dest(dest + 'www/js'));
 
 });
