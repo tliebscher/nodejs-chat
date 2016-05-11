@@ -1,0 +1,7 @@
+{
+  "name": "node-js-test",
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "socket.io-client": "^1.4.6"
+  }
+}
